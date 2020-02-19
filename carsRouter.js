@@ -11,7 +11,7 @@ const carDealerDb = knex({
 
 carsRouter.get("/", (req, res) => {
   carDealerDb("cars")
-    .join("transmission_type", { "cars.transmission_type_id": "transmission_type.id" })
+    .join("transmissions", { "cars.transmission_id": "transmissions.transmission_id" })
     .then(cars => {
       res.status(200).json(cars);
     })
@@ -22,10 +22,10 @@ carsRouter.get("/", (req, res) => {
 
 carsRouter.get("/:id", (req, res) => {
   carDealerDb("cars")
-    .where({ id: req.params.id })
-    .first()
-    .then(cars => {
-      res.status(200).json(cars);
+    .join("transmissions", { "cars.transmission_id": "transmissions.transmission_id" })
+    .where("id", req.params.id)
+    .then(car => {
+      res.status(200).json(car);
     })
     .catch (e => {
       res.status(500).json(e);

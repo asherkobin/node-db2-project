@@ -8,7 +8,7 @@ exports.seed = function(knex) {
           model: "Supra",
           mileage: 0,
           title_status: "Bank",
-          transmission_type_id: 2
+          transmission_id: 2
         },
         { 
           vin: "Z12345",
@@ -16,7 +16,7 @@ exports.seed = function(knex) {
           model: "3",
           mileage: 50,
           title_status: "Self",
-          transmission_type_id: 1
+          transmission_id: 1
         },
         { 
           vin: "T12345",
@@ -24,7 +24,7 @@ exports.seed = function(knex) {
           model: "M",
           mileage: 1000,
           title_status: "Bank",
-          transmission_type_id: 3
+          transmission_id: 3
         }
       ];
       

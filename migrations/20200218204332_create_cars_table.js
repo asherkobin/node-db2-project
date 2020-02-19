@@ -8,11 +8,13 @@ exports.up = function(knex) {
     table.integer("mileage").notNullable();
     table.string("title_status", 128);
     table
-      .integer("transmission_type_id")
+      .integer("transmission_id")
       .unsigned()
       .notNullable()
-      .references("id")
-      .inTable("transmission_type");
+      .references("transmission_id")
+      .inTable("transmissions")
+      .onUpdate("CASCADE")
+      .onDelete("RESTRICT");
   });
 };
 
