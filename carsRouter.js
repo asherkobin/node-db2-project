@@ -11,6 +11,7 @@ const carDealerDb = knex({
 
 carsRouter.get("/", (req, res) => {
   carDealerDb("cars")
+    .join("transmission_type", { "cars.transmission_type_id": "transmission_type.id" })
     .then(cars => {
       res.status(200).json(cars);
     })
@@ -59,7 +60,7 @@ carsRouter.put("/:id", (req, res) => {
   carDealerDb("cars")
     .update({ // only allow updates to these values
       mileage: updatedCarInfo.mileage,
-      transmission_type: updatedCarInfo.transmission_type,
+      transmission_type_id: updatedCarInfo.transmission_type_id,
       title_status: updatedCarInfo.title_status
     })
     .where({ id: carId })
